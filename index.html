@@ -60,6 +60,20 @@ color:white;
 position:absolute;
 }
 
+/* Love Message */
+#loveMessage{
+display:none;
+margin-top:25px;
+font-size:22px;
+max-width:600px;
+animation:fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
 /* Floating hearts */
 .heart{
 position:absolute;
@@ -86,6 +100,17 @@ animation:rise 6s linear infinite;
 <button id="no">NO 😜</button>
 </div>
 
+<!-- Romantic Message -->
+<div id="loveMessage">
+🌹 "Tum meri zindagi ka sabse khoobsurat ehsaas ho,<br>
+Tumhari muskaan meri duniya ki sabse pyari baat ho.<br>
+Har pal tumhare saath jeena chahta hoon,<br>
+Kyuki tum hi meri mohabbat ki shuruaat ho." 💕
+
+<br><br>
+💖 Meri zindagi me aane ke liye thank you so much 💖
+</div>
+
 <audio id="music" preload="auto">
 <source src="love.mp3" type="audio/mpeg">
 </audio>
@@ -95,6 +120,7 @@ let noBtn=document.getElementById("no");
 let yesBtn=document.getElementById("yes");
 let music=document.getElementById("music");
 let mainImage=document.getElementById("mainImage");
+let loveMessage=document.getElementById("loveMessage");
 
 /* NO button bhaage */
 function moveButton(){
@@ -123,10 +149,13 @@ createHearts();
 /* YES CLICK */
 yesBtn.addEventListener("click",function(){
 
-// Image change to hug.jpg
-mainImage.src="hug.jpg";
+// Hide image
+mainImage.style.display="none";
 
-// Music force play (mobile compatible)
+// Show romantic message
+loveMessage.style.display="block";
+
+// Play music
 music.currentTime = 0;
 music.play().catch(function(e){
 console.log("Autoplay blocked:", e);
