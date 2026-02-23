@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+overflow:hidden;
+background:linear-gradient(to top,#ff4e73,#ff758c,#ff9a9e);
+color:white;
+}
+
+.hero-img{
+width:90%;
+max-width:320px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 15px 35px rgba(0,0,0,0.4);
+transition:0.5s;
+}
+
+h1{
+font-size:clamp(26px,5vw,45px);
+margin-bottom:25px;
+}
+
+button{
+padding:12px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+margin:10px;
+}
+
+#yes{
+background:white;
+color:#ff4e73;
+font-weight:bold;
+}
+
+#no{
+background:#333;
+color:white;
+position:absolute;
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+bottom:-20px;
+font-size:20px;
+animation:rise 6s linear infinite;
+}
+
+@keyframes rise{
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<img src="proposal.jpg" id="mainImage" class="hero-img">
+
+<h1>💖 Kya Tum Mujhe Pyaar Karti Ho? 💖</h1>
+
+<div>
+<button id="yes">YES ❤️</button>
+<button id="no">NO 😜</button>
+</div>
+
+<audio id="music" preload="auto">
+<source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let noBtn=document.getElementById("no");
+let yesBtn=document.getElementById("yes");
+let music=document.getElementById("music");
+let mainImage=document.getElementById("mainImage");
+
+/* NO button bhaage */
+function moveButton(){
+let x=Math.random()*(window.innerWidth-100);
+let y=Math.random()*(window.innerHeight-50);
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+}
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("touchstart",moveButton);
+
+/* Floating hearts */
+function createHearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},300);
+}
+createHearts();
+
+/* YES CLICK */
+yesBtn.addEventListener("click",function(){
+
+// Image change to hug.jpg
+mainImage.src="hug.jpg";
+
+// Music force play (mobile compatible)
+music.currentTime = 0;
+music.play().catch(function(e){
+console.log("Autoplay blocked:", e);
+});
+
+});
+</script>
+
+</body>
+</html>
